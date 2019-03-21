@@ -1,5 +1,7 @@
 package com.ipiecoles.java.java350.model;
 
+import com.ipiecoles.java.java350.exception.EmployeException;
+import jdk.internal.org.objectweb.asm.tree.TryCatchBlockNode;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -82,6 +84,59 @@ public class EmployeTest {
 
         //Then
         Assertions.assertEquals(primeAnnuelle, prime);
+
+    }
+    @Test
+    public void augmenterSalaire(){
+
+        //Given
+        Employe e = new Employe();
+        e.setSalaire(1500.00);
+
+        //When
+        try {
+            e.augmenterSalaire(0.5);
+        }
+        catch (EmployeException probleme) {
+        }
+
+        //Then
+        Assertions.assertEquals(2250, e.getSalaire().doubleValue());
+    }
+    @Test
+    public void augmenterSalairenull(){
+
+        //Given
+        Employe e = new Employe();
+        e.setSalaire(1500.00);
+
+        //When
+        try {
+            e.augmenterSalaire(0.0);
+        }catch(EmployeException probleme) {
+
+        }
+        //Then
+        Assertions.assertEquals(1500, e.getSalaire().doubleValue());
+
+    }
+    @Test
+    public void augmenterSalaireE (){
+
+        //Given
+        Employe e = new Employe();
+        e.setSalaire(1500.00);
+
+        //When
+        try {
+            e.augmenterSalaire(0.6);
+        }
+        catch (EmployeException probleme){
+
+        }
+
+        //Then
+        Assertions.assertEquals(1500, e.getSalaire().doubleValue());
 
     }
 
