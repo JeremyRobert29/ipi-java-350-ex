@@ -90,54 +90,69 @@ public class EmployeTest {
     public void augmenterSalaire(){
 
         //Given
-        Employe e = new Employe();
-        e.setSalaire(1500.00);
+        Employe a = new Employe();
+        a.setSalaire(1500.00);
 
         //When
         try {
-            e.augmenterSalaire(0.5);
+            a.augmenterSalaire(0.5);
         }
         catch (EmployeException probleme) {
         }
 
         //Then
-        Assertions.assertEquals(2250, e.getSalaire().doubleValue());
+        Assertions.assertEquals(2250, a.getSalaire().doubleValue());
     }
     @Test
     public void augmenterSalairenull(){
 
         //Given
-        Employe e = new Employe();
-        e.setSalaire(1500.00);
+        Employe a = new Employe();
+        a.setSalaire(1500.00);
 
         //When
         try {
-            e.augmenterSalaire(0.0);
+            a.augmenterSalaire(0.0);
         }catch(EmployeException probleme) {
 
         }
         //Then
-        Assertions.assertEquals(1500, e.getSalaire().doubleValue());
+        Assertions.assertEquals(1500, a.getSalaire().doubleValue());
 
     }
     @Test
     public void augmenterSalaireE (){
 
         //Given
-        Employe e = new Employe();
-        e.setSalaire(1500.00);
+        Employe a = new Employe();
+        a.setSalaire(1500.00);
 
         //When
         try {
-            e.augmenterSalaire(0.6);
+            a.augmenterSalaire(0.6);
         }
         catch (EmployeException probleme){
 
         }
 
         //Then
-        Assertions.assertEquals(1500, e.getSalaire().doubleValue());
+        Assertions.assertEquals(1500, a.getSalaire().doubleValue());
 
+    }
+    @ParameterizedTest
+    @CsvSource({
+            "2019-08-06, 8",
+            "2021-08-06, 11",
+            "2022-08-06, 10",
+            "2032-08-06, 12"
+    })
+    void getNbRtt (LocalDate d, Integer nbRtt){
+        //Given
+        Employe employe = new Employe();
+        //When
+        Integer RTT =  employe.getNbRtt(d);
+        //Then
+        Assertions.assertEquals(nbRtt, RTT);
     }
 
 }
