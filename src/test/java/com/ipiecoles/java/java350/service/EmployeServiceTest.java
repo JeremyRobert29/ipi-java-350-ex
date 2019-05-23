@@ -141,4 +141,8 @@ public class EmployeServiceTest {
         EmployeException e = Assertions.assertThrows(EmployeException.class, () -> employeService.embaucheEmploye(nom, prenom, poste, niveauEtude, tempsPartiel));
         Assertions.assertEquals("Limite des 100000 matricules atteinte !", e.getMessage());
     }
+    @Test
+    public void testcalculPerformanceCommercialnull() throws EmployeException{
+
+    }
 }
