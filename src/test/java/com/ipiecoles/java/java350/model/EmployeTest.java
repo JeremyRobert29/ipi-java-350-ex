@@ -1,5 +1,7 @@
 package com.ipiecoles.java.java350.model;
 
+import com.ipiecoles.java.java350.exception.EmployeException;
+import jdk.internal.org.objectweb.asm.tree.TryCatchBlockNode;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -83,6 +85,75 @@ public class EmployeTest {
         //Then
         Assertions.assertEquals(primeAnnuelle, prime);
 
+    }
+    @Test
+    public void augmenterSalaire(){
+
+        //Given
+        Employe a = new Employe();
+        a.setSalaire(1500.00);
+
+        //When
+        try {
+            a.augmenterSalaire(0.5);
+        }
+        catch (EmployeException probleme) {
+        }
+
+        //Then
+        Assertions.assertEquals(2250, a.getSalaire().doubleValue());
+    }
+    @Test
+    public void augmenterSalairenull(){
+
+        //Given
+        Employe a = new Employe();
+        a.setSalaire(1500.00);
+
+        //When
+        try {
+            a.augmenterSalaire(0.0);
+        }catch(EmployeException probleme) {
+
+        }
+        //Then
+        Assertions.assertEquals(1500, a.getSalaire().doubleValue());
+
+    }
+    @Test
+    public void augmenterSalaireE (){
+
+        //Given
+        Employe a = new Employe();
+        a.setSalaire(1500.00);
+
+        //When
+        try {
+            a.augmenterSalaire(0.6);
+        }
+        catch (EmployeException probleme){
+
+        }
+
+        //Then
+        Assertions.assertEquals(1500, a.getSalaire().doubleValue());
+
+    }
+    @ParameterizedTest
+    @CsvSource({
+            //Source avec Date et nbRTT
+            "2019-08-06, 8",
+            "2021-08-06, 11",
+            "2022-08-06, 10",
+            "2032-08-06, 12"
+    })
+    void getNbRtt (LocalDate dadate, Integer nbRtt){
+        //Given
+        Employe employe = new Employe();
+        //When
+        Integer RTT =  employe.getNbRtt(dadate);
+        //Then
+        Assertions.assertEquals(nbRtt, RTT);
     }
 
 }
